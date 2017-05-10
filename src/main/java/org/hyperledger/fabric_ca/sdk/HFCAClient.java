@@ -292,8 +292,7 @@ public class HFCAClient {
 
                 logger.debug("[HFCAClient.enroll] Generating keys...done!");
             }
-            PKCS10CertificationRequest csr = cryptoPrimitives.generateCertificationRequest(user, keypair);
-            String pem = cryptoPrimitives.certificationRequestToPEM(csr);
+            String pem = cryptoPrimitives.generateCertificationRequest(user, keypair);
 
             // build request body
             req.setCSR(pem);
@@ -383,8 +382,7 @@ public class HFCAClient {
             KeyPair keypair = new KeyPair(cryptoPrimitives.decodePublicKey(user.getEnrollment().getPublicKey()), user.getEnrollment().getKey());
 
             // generate CSR
-            PKCS10CertificationRequest csr = cryptoPrimitives.generateCertificationRequest(user.getName(), keypair);
-            String pem = cryptoPrimitives.certificationRequestToPEM(csr);
+            String pem = cryptoPrimitives.generateCertificationRequest(user.getName(), keypair);
 
             // build request body
             req.setCSR(pem);
